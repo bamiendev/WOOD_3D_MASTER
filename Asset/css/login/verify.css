@@ -1,0 +1,72 @@
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    margin: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-image: url('bg.jpg'); */
+    background-size: cover;
+    min-height: 100vh; /* Sử dụng min-height để giữ nguyên chiều cao tối thiểu */
+}
+
+.otp-card {
+    text-align: center;
+    background-color: Mlwhite;
+    border-radius: 20px;
+    padding: 4rem;
+    box-shadow: 0 10px 40px -20px black;
+    width: 80%; /* Thêm chiều rộng để phản ánh responsive */
+    max-width: 450px; /* Giới hạn chiều rộng tối đa để không bị quá lớn */
+}
+
+.otp-card-inputs {
+    margin: 30px 0;
+    display: grid;
+    gap: 13px; /* Giảm khoảng cách giữa các input */
+    justify-content: center;
+    grid-template-columns: repeat(6, auto);
+}
+
+.otp-card-inputs input {
+    width: 53px; /* Thay đổi kích thước input để phản ánh responsive */
+    height: 55px; /* Thay đổi kích thước input để phản ánh responsive */
+    font-size: 25px; /* Thay đổi kích thước font để phản ánh responsive */
+    text-align: center;
+    border-radius: 10px; /* Giảm độ cong của góc để thích hợp với kích thước input */
+    border: 1px solid black;
+}
+
+.otp-card-inputs input:focus {
+    outline: 2px solid blueviolet;
+    border-color: transparent;
+}
+
+.otp-card button {
+    background-color: blueviolet;
+    border : none;
+    padding: 15px 40px; /* Thay đổi kích thước nút để phản ánh responsive */
+    font-size: 18px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.otp-card button:hover {
+    opacity: .9;
+    cursor: pointer;
+}
+
+.otp-card button[disabled] {
+    opacity: .6;
+    cursor: default;
+}

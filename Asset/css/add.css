@@ -1,0 +1,430 @@
+.rating {
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 0.3rem;
+	--stroke: #666;
+	--fill: #f1f500;
+}
+
+.rating input {
+	appearance: unset;
+}
+
+.rating label {
+	cursor: pointer;
+}
+
+.rating svg {
+	width: 2rem;
+	height: 2rem;
+	overflow: visible;
+	fill: transparent;
+	stroke: var(--stroke);
+	stroke-linejoin: bevel;
+	stroke-dasharray: 12;
+	animation: idle 4s linear infinite;
+	transition: stroke 0.2s, fill 0.5s;
+}
+
+@keyframes idle {
+	from {
+		stroke-dashoffset: 24;
+	}
+}
+
+.rating label:hover svg {
+	stroke: var(--fill);
+}
+
+.rating input:checked~label svg {
+	transition: 0s;
+	animation: idle 4s linear infinite, yippee 0.75s backwards;
+	fill: var(--fill);
+	stroke: var(--fill);
+	stroke-opacity: 0;
+	stroke-dasharray: 0;
+	stroke-linejoin: miter;
+	stroke-width: 8px;
+}
+
+@keyframes yippee {
+	0% {
+		transform: scale(1);
+		fill: var(--fill);
+		fill-opacity: 0;
+		stroke-opacity: 1;
+		stroke: var(--stroke);
+		stroke-dasharray: 10;
+		stroke-width: 1px;
+		stroke-linejoin: bevel;
+	}
+
+	30% {
+		transform: scale(0);
+		fill: var(--fill);
+		fill-opacity: 0;
+		stroke-opacity: 1;
+		stroke: var(--stroke);
+		stroke-dasharray: 10;
+		stroke-width: 1px;
+		stroke-linejoin: bevel;
+	}
+
+	30.1% {
+		stroke: var(--fill);
+		stroke-dasharray: 0;
+		stroke-linejoin: miter;
+		stroke-width: 8px;
+	}
+
+	60% {
+		transform: scale(1.2);
+		fill: var(--fill);
+	}
+}
+
+.form_radiobutton {
+	--text: #414856;
+	--radio: #ffffff;
+	--radio-checked: #000000;
+	--radio-size: 20px;
+	--border-radius: 10px;
+	border-radius: var(--border-radius);
+	color: var(--text);
+	position: relative;
+	padding: 20px 20px;
+	margin-bottom: 20px;
+	display: grid;
+	grid-template-columns: auto var(--radio-size);
+	align-items: center;
+	background-image: linear-gradient(to left, #bcbcbc, #ececec);
+}
+
+.form_radiobutton label {
+	cursor: pointer;
+}
+
+.form_radiobutton input[type="radio"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	position: relative;
+	height: var(--radio-size);
+	width: var(--radio-size);
+	outline: none;
+	margin: 0;
+	cursor: pointer;
+	border: 2px solid var(--radio);
+	background: transparent;
+	border-radius: 50%;
+	display: grid;
+	justify-self: end;
+	justify-items: center;
+	align-items: center;
+	overflow: hidden;
+	transition: border .5s ease;
+}
+
+.form_radiobutton input[type="radio"]::before,
+.form_radiobutton input[type="radio"]::after {
+	content: "";
+	display: flex;
+
+	justify-self: center;
+	border-radius: 50%;
+}
+
+.form_radiobutton input[type="radio"]::before {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: var(--opacity, 1);
+}
+
+.form_radiobutton input[type="radio"]::after {
+	position: relative;
+	width: calc(100% /2);
+	height: calc(100% /2);
+	background: var(--radio-checked);
+	top: var(--y, 100%);
+	transition: top 0.5s cubic-bezier(0.48, 1.97, 0.5, 0.63);
+}
+
+.form_radiobutton input[type="radio"]:checked {
+	--radio: var(--radio-checked);
+}
+
+.form_radiobutton input[type="radio"]:checked::after {
+	--y: 0%;
+	animation: stretch-animate .3s ease-out .17s;
+}
+
+.form_radiobutton input[type="radio"]:checked::before {
+	--opacity: 0;
+}
+
+.form_radiobutton input[type="radio"]:checked~input[type="radio"]::after {
+	--y: -100%;
+}
+
+.form_radiobutton input[type="radio"]:not(:checked)::before {
+	--opacity: 1;
+	transition: opacity 0s linear .5s;
+}
+
+@keyframes stretch-animate {
+	0% {
+		transform: scale(1, 1);
+	}
+
+	28% {
+		transform: scale(1.15, 0.85);
+	}
+
+	50% {
+		transform: scale(0.9, 1.1);
+	}
+
+	100% {
+		transform: scale(1, 1);
+	}
+}
+
+.socials {
+	position: fixed;
+	display: block;
+	left: 20px;
+	bottom: 20px;
+}
+
+.socials>a {
+	display: block;
+	width: 30px;
+	opacity: .2;
+	transform: scale(var(--scale, 0.8));
+	transition: transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);
+}
+
+.socials>a:hover {
+	--scale: 1;
+}
+
+.iphone {
+	background-image: linear-gradient(to bottom, #e0e0e0, #a0a0a0);
+	border-radius: 2em;
+	box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
+	inline-size: 375px;
+	padding: 2em;
+}
+
+.img-checkout {
+	max-width: 90%;
+}
+
+.border_product {
+	border-bottom: 2px solid black;
+}
+
+
+.heart-container {
+	--heart-color: rgb(255, 91, 137);
+	position: relative;
+	width: 50px;
+	height: 50px;
+	transition: .3s;
+}
+
+.heart-container .checkbox {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: 20;
+	cursor: pointer;
+}
+
+.heart-container .svg-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.heart-container .svg-outline,
+.heart-container .svg-filled {
+	fill: var(--heart-color);
+	position: absolute;
+}
+
+.heart-container .svg-filled {
+	animation: keyframes-svg-filled 1s;
+	display: none;
+}
+
+.heart-container .svg-celebrate {
+	position: absolute;
+	animation: keyframes-svg-celebrate .5s;
+	animation-fill-mode: forwards;
+	display: none;
+	stroke: var(--heart-color);
+	fill: var(--heart-color);
+	stroke-width: 2px;
+}
+
+.heart-container .checkbox:checked~.svg-container .svg-filled {
+	display: block
+}
+
+.heart-container .checkbox:checked~.svg-container .svg-celebrate {
+	display: block
+}
+
+@keyframes keyframes-svg-filled {
+	0% {
+		transform: scale(0);
+	}
+
+	25% {
+		transform: scale(1.2);
+	}
+
+	50% {
+		transform: scale(1);
+		filter: brightness(1.5);
+	}
+}
+
+@keyframes keyframes-svg-celebrate {
+	0% {
+		transform: scale(0);
+	}
+
+	50% {
+		opacity: 1;
+		filter: brightness(1.5);
+	}
+
+	100% {
+		transform: scale(1.4);
+		opacity: 0;
+		display: none;
+	}
+}
+
+select.select-club-services {
+	width: 100%;
+	padding: 9px 16px;
+	border-radius: 6px;
+	border: 2px solid #687898;
+	background: #fff;
+	line-height: 22px;
+	font-size: 16px;
+}
+
+.delete-button {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: rgb(20, 20, 20);
+	border: none;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+	cursor: pointer;
+	transition-duration: 0.3s;
+	overflow: hidden;
+	position: relative;
+	margin: 0 auto;
+}
+
+
+
+.delete-svgIcon {
+	width: 15px;
+	transition-duration: 0.3s;
+}
+
+.delete-svgIcon path {
+	fill: white;
+}
+
+.delete-button:hover {
+	width: 90px;
+	border-radius: 50px;
+	transition-duration: 0.3s;
+	background-color: crimson;
+	align-items: center;
+}
+
+.delete-button:hover .delete-svgIcon {
+	width: 20px;
+	transition-duration: 0.3s;
+	transform: translateY(60%);
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+
+.delete-button::before {
+	display: none;
+	content: "Delete";
+	color: white;
+	transition-duration: 0.3s;
+	font-size: 2px;
+}
+
+.delete-button:hover::before {
+	display: block;
+	padding-right: 10px;
+	font-size: 13px;
+	opacity: 1;
+	transform: translateY(0px);
+	transition-duration: 0.3s;
+}
+
+
+.container {
+	position: relative;
+}
+
+#myBtn {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	z-index: 999;
+}
+
+/* Thêm các quy tắc CSS cho nút hoặc biểu tượng svg của bạn nếu cần */
+.myBtn {
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+}
+
+.result-box {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+	display: none;
+}
+
+.box-ss {
+	padding: 10px;
+	background-color: #f2f2f2;
+	margin-left: 15px;
+	margin-right: 15px;
+	border-top: 1px solid #bcbcbc;
+	border-bottom: 1px solid #bcbcbc;
+}
+
+.result-box a {
+	color: black
+}
